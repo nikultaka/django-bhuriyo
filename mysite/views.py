@@ -23,6 +23,29 @@ def index(request):
     context = {'about_us': about_us, 'portfolio': portfolio, 'testimonial': testimonial, 'blogs':blogs}
     return render(request, 'mysite/index.html', context)
 
+
+def about(request):
+
+    about_us = CMSPage.objects.filter(slug='about_us')[:1]
+    context = {"about_us":about_us}
+    return render(request, 'mysite/about.html', context)
+
+
+def blog(request):
+
+    blogs = Blog.objects.filter()
+    context = {'blogs': blogs}
+    return render(request, 'mysite/blog.html', context)
+
+
+def portfolio(request):
+
+    portfolio = Portfolio.objects.filter()
+    context = {"portfolio": portfolio}
+    return render(request, "mysite/portfolio.html", context)
+
+
+
 def contact(request):
 
     name = request.POST.get('name')

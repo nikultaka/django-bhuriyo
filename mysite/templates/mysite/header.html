@@ -41,19 +41,19 @@
     <div class="collapse navbar-collapse text-center" id="navigation">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="{% url "mysite:index" %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.html">about</a>
+          <a class="nav-link" href="{% url "mysite:about-us" %}">about</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blog.html">Blog</a>
+          <a class="nav-link" href="{% url "mysite:blog" %}">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="portfolio.html">Portfolio</a>
+          <a class="nav-link" href="{% url "mysite:portfolio" %}">Portfolio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link" href="#contact-section">Contact</a>
         </li>
       </ul>
     </div>

@@ -1,0 +1,71 @@
+{% extends "mysite/layout.html" %}
+{%  load static %}
+
+
+{% block content %}
+
+
+    <!-- page title -->
+<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="text-white font-tertiary">Portfolio</h1>
+      </div>
+    </div>
+  </div>
+  <!-- background shapes -->
+  <img src="{% static "mysite/images/illustrations/page-title.png" %}" alt="illustrations" class="bg-shape-1 w-100">
+  <img src="{% static "mysite/images/illustrations/leaf-pink-round.png" %}" alt="illustrations" class="bg-shape-2">
+  <img src="{% static "mysite/images/illustrations/dots-cyan.png" %}" alt="illustrations" class="bg-shape-3">
+  <img src="{% static "mysite/images/illustrations/leaf-orange.png" %}" alt="illustrations" class="bg-shape-4">
+  <img src="{% static "mysite/images/illustrations/leaf-yellow.png" %}" alt="illustrations" class="bg-shape-5">
+  <img src="{% static "mysite/images/illustrations/dots-group-cyan.png" %}" alt="illustrations" class="bg-shape-6">
+  <img src="{% static "mysite/images/illustrations/leaf-cyan-lg.png" %}" alt="illustrations" class="bg-shape-7">
+</section>
+<!-- /page title -->
+
+<!-- portfolio -->
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="btn-group btn-group-toggle justify-content-center d-flex" data-toggle="buttons">
+          <label class="btn btn-sm btn-primary active">
+            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
+          </label>
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" value="design" />UI/UX Design
+          </label>
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" value="branding" />BRANDING
+          </label>
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" value="illustration" />ILLUSTRATION
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+
+      <div class="col-lg-4 col-6 mb-4 shuffle-item" data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
+        <div class="position-relative rounded hover-wrapper">
+          <img src="{% static "mysite/images/portfolio/item-1.png" %}" alt="portfolio-image" class="img-fluid rounded w-100 d-block">
+          <div class="hover-overlay">
+            <div class="hover-content">
+              <a class="btn btn-light btn-sm" href="project-single.html">view project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<!-- /portfolio -->
+
+
+
+
+{% endblock %}

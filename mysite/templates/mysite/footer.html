@@ -4,12 +4,12 @@
 <!-- contact -->
 <section class="section section-on-footer" data-background="{% static "mysite/images/backgrounds/bg-dots.png" %}">
   <div class="container">
-    <div class="row">
+    <div class="row" id="contact-section">
       <div class="col-12 text-center">
         <h2 class="section-title">Contact Info</h2>
       </div>
       <div class="col-lg-8 mx-auto">
-        <div class="bg-white rounded text-center p-5 shadow-down">
+        <div class="bg-white rounded text-center p-5 shadow-down" >
           <h4 class="mb-80">Contact Form</h4>
           <form name="contact_us" id="contact_us" action="{% url "mysite:contact"  %}" class="row">
             {% csrf_token %}
