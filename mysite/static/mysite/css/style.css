@@ -912,4 +912,8 @@ p {
   color: white !important;
 }
 
+.error {
+  color: red;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

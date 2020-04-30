@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!-- contact -->
 <section class="section section-on-footer" data-background="{% static "mysite/images/backgrounds/bg-dots.png" %}">
   <div class="container">
@@ -10,19 +11,23 @@
       <div class="col-lg-8 mx-auto">
         <div class="bg-white rounded text-center p-5 shadow-down">
           <h4 class="mb-80">Contact Form</h4>
-          <form action="{% url "mysite:contact"  %}" class="row">
+          <form name="contact_us" id="contact_us" action="{% url "mysite:contact"  %}" class="row">
+            {% csrf_token %}
             <div class="col-md-6">
-              <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4">
+              <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
+                <span class="error" id="name_error" style="display: none;">Please enter name</span>
             </div>
             <div class="col-md-6">
-              <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4">
+              <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
+                <span class="error" id="email_error" style="display: none;">Please enter email</span>
             </div>
             <div class="col-12">
-              <textarea name="message" id="message" class="form-control px-0 mb-4"
+              <textarea name="message" id="message" class="form-control px-0 mb-4" required
                 placeholder="Type Message Here"></textarea>
+                <span class="error" id="message_error" style="display: none;">Please enter message</span>
             </div>
             <div class="col-lg-6 col-10 mx-auto">
-              <button class="btn btn-primary w-100">send</button>
+              <button type="button" class="btn btn-primary w-100" onclick="contact()">send</button>
             </div>
           </form>
         </div>
@@ -74,6 +79,61 @@
 
 <!-- Main Script -->
 <script src="{% static "mysite/js/script.js" %}"></script>
+
+{% block javascript %}
+  <script>
+
+    function contact() {
+           var name = $("#name").val();
+           var email = $("#email").val();
+           var message = $("#message").val();
+           var count_error = 0;
+
+           if(name == '') {
+               $("#name_error").show();
+               count_error++;
+           } else {
+               $("#name_error").hide();
+           }
+
+           if(email == '') {
+               $("#email_error").show();
+               count_error++;
+           } else {
+               $("#email_error").hide();
+           }
+
+           if(message == '') {
+               $("#message_error").show();
+               count_error++;
+           } else {
+               $("#message_error").hide();
+           }
+
+           if(count_error == 0) {
+                $.ajax({
+                    type : 'POST',
+                    url : '{% url "mysite:contact" %}',
+                    data : $("#contact_us").serialize(),
+                    dataType : 'json',
+                    success : function(msg) {
+                        if(msg.status == '1') {
+                            $("#name").val('');
+                            $("#email").val('');
+                            $("#message").val('');
+                            alert("Thanks, we got your inquiry, we will revert back to you soon")
+                        }
+                    }
+                })
+           }
+
+     }
+
+    $("document").ready(function () {
+
+    });
+  </script>
+{% endblock %}
 
 </body>
 </html>
