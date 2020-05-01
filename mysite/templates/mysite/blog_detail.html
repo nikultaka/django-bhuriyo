@@ -1,0 +1,128 @@
+{% extends "mysite/layout.html" %}
+{% load  static %}
+
+{% block content %}
+
+    <!-- page title -->
+<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="text-white font-tertiary">Blogs</h1>
+      </div>
+    </div>
+  </div>
+  <!-- background shapes -->
+  <img src="{% static "mysite/images/illustrations/page-title.png" %}" alt="illustrations" class="bg-shape-1 w-100">
+  <img src="{% static "mysite/images/illustrations/leaf-pink-round.png" %}" alt="illustrations" class="bg-shape-2">
+  <img src="{% static "mysite/images/illustrations/dots-cyan.png" %}" alt="illustrations" class="bg-shape-3">
+  <img src="{% static "mysite/images/illustrations/leaf-orange.png" %}" alt="illustrations" class="bg-shape-4">
+  <img src="{% static "mysite/images/illustrations/leaf-yellow.png" %}" alt="illustrations" class="bg-shape-5">
+  <img src="{% static "mysite/images/illustrations/dots-group-cyan.png" %}" alt="illustrations" class="bg-shape-6">
+  <img src="{% static "mysite/images/illustrations/leaf-cyan-lg.png" %}" alt="illustrations" class="bg-shape-7">
+</section>
+<!-- /page title -->
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="font-tertiary mb-5">{{ blogs.0.title }}</h3>
+        <p class="font-secondary">Published on May 26, 2017 by <span class="text-primary">uixgeek</span
+            class="text-primary"> on <span>UX design</span></p>
+        <div class="content">
+          <img src="{{ blogs.0.image.url }}" style="width: 402px;" alt="post-thumb" class="img-fluid rounded float-left mr-5 mb-4">
+          {{ blogs.0.description|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#<section>#}
+{#  <div class="container">#}
+{#    <div class="row">#}
+{#      <div class="col-lg-12">#}
+{#        <h4 class="font-weight-bold mb-3">Comments 03</h4>#}
+{#        <div class="bg-gray p-5 mb-4">#}
+{#          <div class="media border-bottom py-4">#}
+{#            <img src="{% static "mysite/images/user-1.jpg" %}" class="img-fluid align-self-start rounded-circle mr-3" alt="">#}
+{#            <div class="media-body">#}
+{#              <h5 class="mt-0">Carole Marvin.</h5>#}
+{#              <p>15 january 2015 At 10:30 pm</p>#}
+{#              <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum fuisset te nam ea cu lupta#}
+{#                definitionem.</p>#}
+{#              <a href="#" class="btn btn-transparent btn-sm pl-0">Reply</a>#}
+{#              <div class="media my-5">#}
+{#                <img src="{% static "mysite/images/user-2.jpg" %}" class="img-fluid align-self-start rounded-circle mr-3" alt="">#}
+{#                <div class="media-body">#}
+{#                  <h5 class="mt-0">Jaquan Rolfson.</h5>#}
+{#                  <p>15 january 2015 At 10:30 pm</p>#}
+{#                  <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum fuisset te nam ea cu lupta#}
+{#                    definitionem.</p>#}
+{#                  <a href="#" class="btn btn-transparent btn-sm pl-0">Reply</a>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="media py-4">#}
+{#            <img src="{% static "mysite/images/user-3.jpg" %}" class="img-fluid align-self-start rounded-circle mr-3" alt="">#}
+{#            <div class="media-body">#}
+{#              <h5 class="mt-0">Bruce Bernier.</h5>#}
+{#              <p>15 january 2015 At 10:30 pm</p>#}
+{#              <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum fuisset te nam ea cu lupta#}
+{#                definitionem.</p>#}
+{#              <a href="#" class="btn btn-transparent btn-sm pl-0">Reply</a>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <h4 class="font-weight-bold mb-3 border-bottom pb-3">Leave a Comment</h4>#}
+{#        <form action="#" class="row">#}
+{#          <div class="col-md-6">#}
+{#            <input type="text" class="form-control mb-3" placeholder="First Name" name="fname" id="fname">#}
+{#            <input type="text" class="form-control mb-3" placeholder="Last Name" name="lname" id="lname">#}
+{#            <input type="text" class="form-control mb-3" placeholder="Email *" name="mail" id="mail">#}
+{#          </div>#}
+{#          <div class="col-md-6">#}
+{#            <textarea name="comment" id="comment" placeholder="Message" class="form-control mb-4"></textarea>#}
+{#            <button type="submit" class="btn btn-primary w-100">Send Message</button>#}
+{#          </div>#}
+{#        </form>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</section>#}
+
+<!-- blog -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Similar Stories</h2>
+      </div>
+
+      {% for blog_data in all_blogs %}
+          <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+            <article class="card shadow">
+              <img class="rounded card-img-top" src="{{ blog_data.image.url }}" alt="post-thumb">
+              <div class="card-body">
+                <h4 class="card-title"><a class="text-dark" href="{% url "mysite:blog-detail" blog_data.id %}">{{ blog_data.title }}</a>
+                </h4>
+                <p class="cars-text">
+                    {{ blog_data.description|slice:"0:200"|safe }}
+                </p>
+                <a href="{% url "mysite:blog-detail" blog_data.id %}" class="btn btn-xs btn-primary">Read More</a>
+              </div>
+            </article>
+          </div>
+      {% empty %}
+          <p>No similar post found</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+
+{% endblock %}

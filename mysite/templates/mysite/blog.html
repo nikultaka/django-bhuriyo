@@ -28,19 +28,20 @@
 <section class="section">
   <div class="container">
     <div class="row">
+
+        {% for blogs_data in blogs %}
         <div class="col-lg-4 col-sm-6 mb-4">
           <article class="card shadow">
-            <img class="rounded card-img-top" src="{% static "mysite/images/blog/post-5.jpg" %}" alt="post-thumb">
+            <img class="rounded card-img-top" src="{{  blogs_data.image.url }}" alt="post-thumb">
             <div class="card-body">
-              <h4 class="card-title"><a class="text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
+              <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blogs_data.title }}</a>
               </h4>
-              <p class="cars-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et
-                dolore magna aliqua.</p>
-              <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
+              <p class="cars-text">{{ blogs_data.description|slice:"0:200" |safe }}</p>
+              <a href="{% url "mysite:blog-detail" blogs_data.id %}" class="btn btn-xs btn-primary">Read More</a>
             </div>
           </article>
         </div>
+        {% endfor %}
 
 
     </div>

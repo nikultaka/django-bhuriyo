@@ -6,6 +6,9 @@
 p {
   color: white !important;
 }
+.card-body p {
+    color: black !important;
+}
 </style
 
 <!-- hero area -->
@@ -61,7 +64,7 @@ p {
     <div class="row">
       <div class="col-lg-10 mx-auto text-center">
         <p class="font-secondary paragraph-lg text-dark">{{ portal_contact_home_about|safe }}</p>
-        <a href="about.html" class="btn btn-transparent">know more</a>
+        <a href="{% url "mysite:about-us" %}" class="btn btn-transparent">know more</a>
       </div>
     </div>
   </div>
@@ -275,6 +278,8 @@ p {
           </div>
         </div>
       </div>
+      {% empty %}
+          <p>No portfolio found</p>
       {% endfor %}
 
 
@@ -303,6 +308,9 @@ p {
           <h4 class="text-white">{{ testimonial_data.title }}</h4>
           <h6 class="text-light mb-4">{{ testimonial_data.position }}</h6>
         </div>
+
+        {% empty %}
+        <p>No testimonial found</p>
         {% endfor %}
 
       </div>
@@ -363,12 +371,14 @@ p {
             <h4 class="card-title"><a class="text-dark" href="blog-single.html">{{ blogs_data.title }}</a>
             </h4>
             <p class="cars-text">
-              {{ blogs_data.description |safe }}
+              {{ blogs_data.description|slice:"0:200" |safe }}
             </p>
-            <a href="blog-single.html" class="btn btn-xs btn-primary">Read More</a>
+            <a href="{% url "mysite:blog-detail" blogs_data.id %}" class="btn btn-xs btn-primary">Read More</a>
           </div>
         </article>
       </div>
+      {% empty %}
+      <p>No blog found</p>
       {% endfor %}
 
 
