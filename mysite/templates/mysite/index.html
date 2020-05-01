@@ -3,7 +3,7 @@
 {% block content %}
 
 <style>
-p {
+.testimonial p {
   color: white !important;
 }
 .card-body p {
@@ -63,7 +63,9 @@ p {
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto text-center">
-        <p class="font-secondary paragraph-lg text-dark">{{ portal_contact_home_about|safe }}</p>
+        <span class="font-secondary paragraph-lg text-dark" style="color: black;">
+            {{ portal_contact_home_about|safe }}
+        </span>
         <a href="{% url "mysite:about-us" %}" class="btn btn-transparent">know more</a>
       </div>
     </div>
@@ -300,7 +302,7 @@ p {
          {% for testimonial_data in testimonial %}
         <div class="text-center testimonial-content">
           <i class="ti-quote-right text-white icon mb-4 d-inline-block"></i>
-          <span class="text-white mb-4">
+          <span class="text-white mb-4 testimonial">
               {{ testimonial_data.description |safe }}
           </span>
           <img class="img-fluid rounded-circle mb-4 d-inline-block" style="width: 100px;" src="{{ testimonial_data.image.url }}"
